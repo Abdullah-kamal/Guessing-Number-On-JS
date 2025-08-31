@@ -10,22 +10,37 @@ let max = 100;
 
 let answer = Math.floor(Math.random() * 100);
 
-let userInput = 0;
+console.log(answer);
 
-console.log("Answer : ", answer)
-while(answer != userInput)
+let attempt = 0;
+let guess;
+let running = true;
+
+while(running)
 {
-    userInput = prompt("pass a number: ");
-    if(answer > userInput)
+    guess = window.prompt("Guess a number : ");
+    guess = Number(guess);
+
+    if(isNaN(guess) || guess < min || guess > max)
     {
-        console.log("It is lower then the target number!", answer)
-    }
-    else if(answer < userInput)
-    {
-        console.log("It is higher then the target number!", answer)
+        console.log("Wrong number, not an integer, or not b/w min max.")
+        window.alert("Please enter a valid number!")
     }
     else
     {
-        console.log("answer is found");
+        attempt++;
+        if(guess < answer)
+        {
+            window.alert("Too low. Try again !")
+        }
+        else if(guess > answer)
+        {
+            window.alert("Too high. Try again !")
+        }
+        else
+        {
+            window.alert("CORRECT", answer ,"! It took ", attempt)
+            running = false;
+        }
     }
 }
